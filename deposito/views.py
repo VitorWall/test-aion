@@ -79,8 +79,11 @@ def createPedido(request):
     if request.method == 'POST':
         form = PedidoItemForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('deposito:pedidos')
+            produto_id = form['produto'].value()
+            estoque = Produto_posicao.objects.filter(produto=produto_id).exclude(quantidade=0)
+            if estoque:
+                form.save()
+                return redirect('deposito:pedidos')
     form = PedidoItemForm()
 
     return render(request,'novo_pedido.html',{'form': form})
