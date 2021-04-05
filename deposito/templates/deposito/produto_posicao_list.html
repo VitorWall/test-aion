@@ -1,0 +1,32 @@
+{% extends "deposito/base.html"%}
+
+{% block title %}Estoque{% endblock %}
+
+{% block content %}
+    <a href="/nova-posicao">
+        <button class="btn btn-primary">Nova Posição</button>
+    </a>
+    <table class="table" style="width:60% ">
+        <tr>
+            <th>Produto</th>
+            <th>Posição</th>
+            <th>Quantidade</th>
+            <th>Atualizado</th>
+            <th></th>
+        </tr>
+        {% for posicao in produto_posicao_list %}
+        <tr>
+            <td>{{ posicao.produto.nome }}</td>
+            <td>{{ posicao.posicao}}</td>
+            <td>{{ posicao.quantidade}}</td>
+            <td>{{ posicao.updated}}</td>
+            <td>
+                <a href="/editar-posicao/{{ posicao.id }}">
+                    <button class="btn btn-primary">Editar</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+

@@ -1,0 +1,36 @@
+{% extends "deposito/base.html"%}
+
+{% block title %}Depósito em Django{% endblock %}
+
+{% block content %}
+    <a href="/novo-pedido">
+        <button class="btn btn-primary">Novo Pedido</button>
+    </a>
+    <table class="table" style="width:60% ">
+        <tr>
+            <th>Pedido</th>
+            <th>Id Produto</th>
+            <th>Produto</th>
+            <th>Posição</th>
+            <th>Status</th>
+            <th>Endereço</th>
+            <th></th>
+        </tr>
+        {% for item in pedidos %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.produto.id}}</td>
+            <td>{{ item.produto.nome}}</td>
+            <td>{{ item.posicao.posicao}}</td>
+            <td>{{item.get_status_display}}</td>
+            <td>{{item.endereco_destino}}</td>
+            <td>
+                <a href="/editar-pedido/{{ item.id }}">
+                    <button class="btn btn-primary">Editar</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+

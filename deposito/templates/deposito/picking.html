@@ -1,0 +1,39 @@
+{% extends "deposito/base.html"%}
+
+{% block title %}Depósito em Django{% endblock %}
+
+{% block content %}
+    <table class="table"  style="width:80% ">
+        <tr>
+            <th>Pedido</th>
+            <th>Id Produto</th>
+            <th>Produto</th>
+            <th>Posição</th>
+            <th>Status</th>
+            <th>Endereço</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for item in pedidos %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.produto.id}}</td>
+            <td>{{ item.produto.nome}}</td>
+            <td>{{ item.posicao.posicao}}</td>
+            <td>{{item.get_status_display}}</td>
+            <td>{{item.endereco_destino}}</td>
+            <td>
+                <a href="/peguei-pedido/{{ item.id }}">
+                    <button class="btn btn-primary">Peguei</button>
+                </a>
+            </td>
+            <td>
+                <a href="/nao-encontrei/{{ item.id }}">
+                    <button class="btn btn-danger">Não Encontrei</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+

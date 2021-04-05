@@ -1,0 +1,28 @@
+{% extends "deposito/base.html"%}
+
+{% block title %}Produtos{% endblock %}
+
+{% block content %}
+    <a href="/novo-produto">
+        <button class="btn btn-primary">Novo Produto</button>
+    </a>
+    <table class="table"  style="width:80% ">
+        <tr>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th></th>
+        </tr>
+        {% for produto in produto_list %}
+        <tr>
+            <td>{{ produto.nome }}</td>
+            <td>{{ produto.categoria}}</td>
+            <td>
+                <a href="/editar-produto/{{ produto.id }}">
+                    <button class="btn btn-primary">Editar</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
